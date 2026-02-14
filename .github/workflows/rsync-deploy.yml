@@ -13,8 +13,8 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
-          name: build
-          path: build/
+          name: src
+          path: src/
 
       - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.9.1
@@ -37,4 +37,4 @@ jobs:
           SFTP_USERNAME: ${{ secrets.SFTP_USERNAME }}
           SFTP_TARGET_DIR: ${{ secrets.SFTP_TARGET_DIR }}
         run: |
-          rsync -avz --delete -e "ssh" build/ $SFTP_USERNAME@$SFTP_SERVER:$SFTP_TARGET_DIR
+          rsync -avz --delete -e "ssh" src/ $SFTP_USERNAME@$SFTP_SERVER:$SFTP_TARGET_DIR
